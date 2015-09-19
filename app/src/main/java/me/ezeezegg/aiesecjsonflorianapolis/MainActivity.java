@@ -5,13 +5,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import me.ezeezegg.aiesecjsonflorianapolis.models.info;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    ArrayList<info> infoList;
+
+    InfoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     @Override

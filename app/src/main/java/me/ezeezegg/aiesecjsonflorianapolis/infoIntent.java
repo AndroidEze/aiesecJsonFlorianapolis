@@ -15,19 +15,30 @@ import java.io.InputStream;
  * Created by egarcia on 9/19/15.
  */
 public class infoIntent extends Activity {
-    String passedVar = null;
+    String passedTitle = null;
+    String passedDate = null;
+    String passedRating = null;
     String imageDetails = null;
     private ImageView imageView = null;
-    private TextView passedView = null;
+    private TextView putTitle = null;
+    private TextView putDate = null;
+    private TextView putRating = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_intent);
-        passedVar = getIntent().getExtras().getString("description");
+        passedTitle = getIntent().getExtras().getString("title");
+        passedDate = getIntent().getExtras().getString("date");
+        passedRating = getIntent().getExtras().getString("rating");
         imageDetails = getIntent().getExtras().getString("image");
-        passedView = (TextView) findViewById(R.id.passed);
+        putTitle = (TextView) findViewById(R.id.titleIntent);
+        putDate = (TextView) findViewById(R.id.dateIntent);
+        putRating = (TextView) findViewById(R.id.ratingIntent);
         imageView = (ImageView) findViewById(R.id.imageDetails);
-        passedView.setText("description: "+ passedVar);
+        putTitle.setText("Movie: "+ passedTitle);
+        putDate.setText("Year Premiere: "+ passedDate);
+        putRating.setText("Rating: "+ passedRating);
+
         new DownloadImageTask(imageView).execute(imageDetails);
     }
 

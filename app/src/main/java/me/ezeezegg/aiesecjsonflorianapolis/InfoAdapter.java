@@ -75,11 +75,8 @@ public class InfoAdapter extends BaseAdapter {
 
         // date
         date.setText("Fecha: " + String.valueOf(m.getDate()));
-        authors.setText("authors: " + String.valueOf(m.getAuthors()));
+        authors.setText("Rating " + String.valueOf(m.getRating()));
         new DownloadImageTask(image).execute(String.valueOf(m.getImage()));
-        Log.d("pinta", String.valueOf(m.getDate()));
-        Log.d("pinta", String.valueOf(m.getTitle()));
-        Log.d("pinta", String.valueOf(m.getAuthors()));
 
         return convertView;
     }

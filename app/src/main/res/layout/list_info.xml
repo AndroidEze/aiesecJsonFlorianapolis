@@ -14,6 +14,10 @@
             android:id="@+id/ivImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="126dp"
+            android:maxHeight="126dp"
+            android:scaleType="fitCenter"
             android:layout_margin="8dp"
             android:src="@drawable/ic_launcher" />
 
@@ -21,30 +25,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-            <!--tvHeight-->
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Height: 1.80 m"
-                android:textColor="#D64530"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
 
             <TextView
                 android:id="@+id/authors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tom Cruise"
+                android:text="Authors"
                 android:textColor="#166CED"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <!--tvHeight-->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="#166CED"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
             <!--tvDateOfBirth-->
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#D64530"
-                android:text="Date of Birth: July 3, 1962" />
+                android:text="Fecha" />
 
         </LinearLayout>
     </LinearLayout>

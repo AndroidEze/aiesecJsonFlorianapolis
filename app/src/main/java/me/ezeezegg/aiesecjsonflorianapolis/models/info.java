@@ -11,18 +11,28 @@ public class info {
     private String authors;
     private String title;
     private String image;
+    private Double rating;
 
     public info() {
 
     }
 
-    public info(String website, String content, String date, String authors, String title, String image) {
+    public info(String website, String content, String date, String authors, String title, String image, Double rating) {
         this.website = website;
         this.content = content;
         this.date = date;
         this.authors = authors;
         this.title = title;
         this.image = image;
+        this.rating = rating;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     public String getWebsite() {

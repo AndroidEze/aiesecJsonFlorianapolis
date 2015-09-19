@@ -51,8 +51,10 @@ public class MainActivity extends ActionBarActivity {
                                     long id) {
                 // TODO Auto-generated method stub
                 Intent i = new Intent(MainActivity.this, infoIntent.class);
-                i.putExtra("description", String.valueOf(infoList.get(position).getTitle()));
+                i.putExtra("title", String.valueOf(infoList.get(position).getTitle()));
                 i.putExtra("image", String.valueOf(infoList.get(position).getImage()));
+                i.putExtra("date", String.valueOf(infoList.get(position).getDate()));
+                i.putExtra("rating", String.valueOf(infoList.get(position).getRating()));
                 startActivity(i);
                 //Toast.makeText(getApplicationContext(), actorsList.get(position).getDescription(), Toast.LENGTH_LONG).show();
             }
@@ -74,10 +76,7 @@ public class MainActivity extends ActionBarActivity {
                                 Info.setTitle(obj.getString("title"));
                                 Info.setDate(obj.getString("releaseYear"));
                                 Info.setImage(obj.getString("image"));
-                                Log.d("title", obj.getString("title"));
-                                Log.d("date", obj.getString("releaseYear"));
-                                //Info.setRating(((Number) obj.get("rating").doubleValue());
-                                //Info.setDate(obj.getInt("releaseYear"));
+                                Info.setRating(obj.getDouble("rating"));
 
                                 infoList.add(Info);
 
@@ -129,8 +128,5 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Method to make json object request where json response starts wtih {
-     * */
 
 }

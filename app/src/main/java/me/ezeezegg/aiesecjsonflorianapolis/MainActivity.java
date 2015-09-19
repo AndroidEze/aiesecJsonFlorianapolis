@@ -1,11 +1,15 @@
 package me.ezeezegg.aiesecjsonflorianapolis;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -40,6 +44,20 @@ public class MainActivity extends ActionBarActivity {
         // infoList = new ArrayList<info>();
         // Creating volley request obj
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+                                    long id) {
+                // TODO Auto-generated method stub
+                Intent i = new Intent(MainActivity.this, infoIntent.class);
+                i.putExtra("description", String.valueOf(infoList.get(position).getTitle()));
+                i.putExtra("image", String.valueOf(infoList.get(position).getImage()));
+                startActivity(i);
+                //Toast.makeText(getApplicationContext(), actorsList.get(position).getDescription(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         JsonArrayRequest movieReq = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -85,6 +103,7 @@ public class MainActivity extends ActionBarActivity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(movieReq);
         //makeJsonObjectRequest();
+
 
     }
 

@@ -1,4 +1,4 @@
-package me.ezeezegg.aiesecjsonflorianapolis.controllers;
+package me.ezeezegg.aiesecjsonflorianapolis;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -10,12 +10,12 @@ import com.android.volley.toolbox.Volley;
 /**
  * Created by egarcia on 9/19/15.
  */
-public class volleyController extends Application{
+public class AppController extends Application{
 
-    public static final String TAG = volleyController.class.getSimpleName();
+    public static final String TAG = AppController.class.getSimpleName();
 
     private RequestQueue mRequestQueue;
-    private static volleyController mInstance;
+    private static AppController mInstance;
 
     @Override
     public void onCreate() {
@@ -23,7 +23,7 @@ public class volleyController extends Application{
         mInstance = this;
     }
 
-    public static synchronized volleyController getInstance() {
+    public static synchronized AppController getInstance() {
         return mInstance;
     }
 

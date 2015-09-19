@@ -8,63 +8,80 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.io.InputStream;
-import java.util.ArrayList;
+import java.util.List;
 
 import me.ezeezegg.aiesecjsonflorianapolis.models.info;
 
 /**
  * Created by egarcia on 9/19/15.
  */
-public class InfoAdapter extends ArrayAdapter<info> {
-    ArrayList<info> infoList;
-    LayoutInflater vi;
-    int Resource;
-    ViewHolder holder;
+public class InfoAdapter extends BaseAdapter {
+    private MainActivity activity;
+    private LayoutInflater inflater;
+    private List<info> infoItems;
+    //ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public InfoAdapter(Context context, int resource, ArrayList<info> objects) {
-        super(context, resource, objects);
-        vi = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        Resource = resource;
-        infoList = objects;
+    public InfoAdapter(MainActivity activity, List<info> infoItems) {
+        this.activity = activity;
+        this.infoItems = infoItems;
     }
 
+    @Override
+    public int getCount() {
+        return infoItems.size();
+    }
+
+    @Override
+    public Object getItem(int location) {
+        return infoItems.get(location);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // convert view = design
-        View v = convertView;
-        if (v == null) {
-            holder = new ViewHolder();
-            v = vi.inflate(Resource, null);
-            holder.imageview = (ImageView) v.findViewById(R.id.ivImage);
-            holder.authors = (TextView) v.findViewById(R.id.authors);
-            holder.date = (TextView) v.findViewById(R.id.date);
-            holder.title = (TextView) v.findViewById(R.id.title);
-            v.setTag(holder);
-        } else {
-            holder = (ViewHolder) v.getTag();
-        }
-        holder.imageview.setImageResource(R.drawable.ic_launcher);
-        new DownloadImageTask(holder.imageview).execute(infoList.get(position).getImage());
-        holder.authors.setText(infoList.get(position).getAuthors());
-        holder.date.setText(infoList.get(position).getDate());
-        holder.title.setText("Fecha " + infoList.get(position).getTitle());
-        return v;
 
-    }
+        if (inflater == null)
+            inflater = (LayoutInflater) activity
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null)
+            convertView = inflater.inflate(R.layout.list_info, null);
 
-    static class ViewHolder {
-        public ImageView imageview;
-        public TextView authors;
-        public TextView date;
-        public TextView title;
+        /*if (imageLoader == null)
+            imageLoader = AppController.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) convertView
+                .findViewById(R.id.thumbnail);*/
+        ImageView image = (ImageView) convertView.findViewById(R.id.ivImage);
+        TextView title = (TextView) convertView.findViewById(R.id.title);
+        TextView date = (TextView) convertView.findViewById(R.id.date);
+        TextView authors = (TextView) convertView.findViewById(R.id.authors);
+        //ImageView image =  convertView.findViewById(R.id.ivImage);
 
+        // getting movie data for the row
+        info m = infoItems.get(position);
+
+        // thumbnail image
+        //thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+
+        // title
+        title.setText(String.valueOf(m.getTitle()));
+
+        // date
+        date.setText("Fecha: " + String.valueOf(m.getDate()));
+        authors.setText("authors: " + String.valueOf(m.getAuthors()));
+        new DownloadImageTask(image).execute(String.valueOf(m.getImage()));
+        Log.d("pinta", String.valueOf(m.getDate()));
+        Log.d("pinta", String.valueOf(m.getTitle()));
+        Log.d("pinta", String.valueOf(m.getAuthors()));
+
+        return convertView;
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

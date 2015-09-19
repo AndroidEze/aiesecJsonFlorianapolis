@@ -12,6 +12,10 @@ public class info {
     private String title;
     private String image;
 
+    public info() {
+
+    }
+
     public info(String website, String content, String date, String authors, String title, String image) {
         this.website = website;
         this.content = content;

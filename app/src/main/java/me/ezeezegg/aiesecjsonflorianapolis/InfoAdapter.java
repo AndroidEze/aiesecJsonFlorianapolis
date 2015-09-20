@@ -3,6 +3,7 @@ package me.ezeezegg.aiesecjsonflorianapolis;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
@@ -23,7 +25,7 @@ public class InfoAdapter extends BaseAdapter {
     private MainActivity activity;
     private LayoutInflater inflater;
     private List<info> infoItems;
-    //ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    private int identifier = 0;
 
     public InfoAdapter(MainActivity activity, List<info> infoItems) {
         this.activity = activity;
@@ -53,28 +55,27 @@ public class InfoAdapter extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_info, null);
+        final int id = identifier++;
+        convertView.setTag(id);
 
-        /*if (imageLoader == null)
-            imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.thumbnail);*/
         ImageView image = (ImageView) convertView.findViewById(R.id.ivImage);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         TextView date = (TextView) convertView.findViewById(R.id.date);
         TextView authors = (TextView) convertView.findViewById(R.id.authors);
-        //ImageView image =  convertView.findViewById(R.id.ivImage);
+        final info m = infoItems.get(position);
 
-        // getting movie data for the row
-        info m = infoItems.get(position);
+        /*We know it if has read*/
+        final LinearLayout back = (LinearLayout)convertView.findViewById(R.id.LinearLayout1);
+        if (m.isRead())
+            back.setBackgroundColor(Color.parseColor("#EEEEEE"));
+        else
+        {
+            back.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
 
-        // thumbnail image
-        //thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
 
-        // title
         title.setText(String.valueOf(m.getTitle()));
-
-        // date
-        date.setText("Fecha: " + String.valueOf(m.getDate()));
+        date.setText("Date: " + String.valueOf(m.getDate()));
         authors.setText("Rating " + String.valueOf(m.getRating()));
         new DownloadImageTask(image).execute(String.valueOf(m.getImage()));
 

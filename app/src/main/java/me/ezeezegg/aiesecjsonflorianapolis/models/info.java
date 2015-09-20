@@ -12,12 +12,14 @@ public class info {
     private String title;
     private String image;
     private Double rating;
+    private Boolean read;
 
     public info() {
 
+
     }
 
-    public info(String website, String content, String date, String authors, String title, String image, Double rating) {
+    public info(String website, String content, String date, String authors, String title, String image, Double rating, Boolean read) {
         this.website = website;
         this.content = content;
         this.date = date;
@@ -25,6 +27,7 @@ public class info {
         this.title = title;
         this.image = image;
         this.rating = rating;
+        this.read = read;
     }
 
     public Double getRating() {
@@ -33,6 +36,14 @@ public class info {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    public Boolean isRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
     }
 
     public String getWebsite() {

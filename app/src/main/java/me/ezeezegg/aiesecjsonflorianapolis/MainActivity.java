@@ -51,12 +51,15 @@ public class MainActivity extends ActionBarActivity {
                                     long id) {
                 // TODO Auto-generated method stub
                 Intent i = new Intent(MainActivity.this, infoIntent.class);
+                infoList.get(position).setRead(true);
                 i.putExtra("title", String.valueOf(infoList.get(position).getTitle()));
                 i.putExtra("image", String.valueOf(infoList.get(position).getImage()));
                 i.putExtra("date", String.valueOf(infoList.get(position).getDate()));
                 i.putExtra("rating", String.valueOf(infoList.get(position).getRating()));
                 startActivity(i);
-                //Toast.makeText(getApplicationContext(), actorsList.get(position).getDescription(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), String.valueOf(infoList.get(position).isRead()), Toast.LENGTH_LONG).show();
+                /*We know it if adapter has a change in Read*/
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -77,6 +80,7 @@ public class MainActivity extends ActionBarActivity {
                                 Info.setDate(obj.getString("releaseYear"));
                                 Info.setImage(obj.getString("image"));
                                 Info.setRating(obj.getDouble("rating"));
+                                Info.setRead(false);
 
                                 infoList.add(Info);
 
@@ -126,6 +130,12 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // The activity is no longer visible (it is now "stopped")
     }
 
 

@@ -39,7 +39,9 @@ public class infoIntent extends Activity {
         putDate.setText("Year Premiere: "+ passedDate);
         putRating.setText("Rating: "+ passedRating);
 
+
         new DownloadImageTask(imageView).execute(imageDetails);
+
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {

@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,6 +22,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.ezeezegg.aiesecjsonflorianapolis.adapters.InfoAdapter;
+import me.ezeezegg.aiesecjsonflorianapolis.controllers.AppController;
+import me.ezeezegg.aiesecjsonflorianapolis.intents.infoIntent;
 import me.ezeezegg.aiesecjsonflorianapolis.models.info;
 
 

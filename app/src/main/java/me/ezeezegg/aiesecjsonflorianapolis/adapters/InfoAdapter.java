@@ -1,4 +1,4 @@
-package me.ezeezegg.aiesecjsonflorianapolis;
+package me.ezeezegg.aiesecjsonflorianapolis.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 
+import me.ezeezegg.aiesecjsonflorianapolis.MainActivity;
+import me.ezeezegg.aiesecjsonflorianapolis.R;
 import me.ezeezegg.aiesecjsonflorianapolis.models.info;
 
 /**

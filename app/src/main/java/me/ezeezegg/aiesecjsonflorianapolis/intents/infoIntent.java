@@ -1,4 +1,4 @@
-package me.ezeezegg.aiesecjsonflorianapolis;
+package me.ezeezegg.aiesecjsonflorianapolis.intents;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
+
+import me.ezeezegg.aiesecjsonflorianapolis.R;
 
 /**
  * Created by egarcia on 9/19/15.

@@ -1,4 +1,4 @@
-package me.ezeezegg.aiesecjsonflorianapolis;
+package me.ezeezegg.aiesecjsonflorianapolis.controllers;
 
 import android.app.Application;
 import android.text.TextUtils;
